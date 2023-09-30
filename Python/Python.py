@@ -1,10 +1,8 @@
 result = ''
+a = 'aaaaa'
+b = 'bbbbb'
 
-my = "He11oWor1d"
-over = "lloWorl"
-overLen = len(over)
-s = 2
-
-result = my[ : s] + over[ : overLen] + my[overLen + s : ]
+for i in range(len(a)):
+    result += a[i]+b[i]
 
 print(result)
