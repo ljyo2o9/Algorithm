@@ -1,8 +1,7 @@
+arr = ['a', 'b', 'c']
 result = ''
-a = 'aaaaa'
-b = 'bbbbb'
 
-for i in range(len(a)):
-    result += a[i]+b[i]
+for i in range(len(arr)):
+    result += arr[i]
 
 print(result)
