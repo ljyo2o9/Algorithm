@@ -1,10 +1,14 @@
-def solution(n, control):
-    for i in range(len(control)) :
-        if control[i] == 'w' :
-            n += 1
-        elif control[i] == 's' :
-            n -= 1
-        elif control[i] == 'd' : 
-            n += 10
-        else : n -= 10
-    return n
+def solution(numLog):
+    answer = ''
+    for i in range(len(numLog) ) :
+        if i == 0 : continue
+        sum = numLog[i] - numLog[i - 1]
+        if sum == 1 : 
+            answer = str(answer) + 'w'
+        elif sum == -1 : 
+            answer = str(answer) + 's'
+        elif sum == 10 :
+            answer = str(answer) + 'd'
+        elif sum == -10 :
+            answer = str(answer) + 'a'
+    return answer
