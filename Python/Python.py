@@ -1,8 +1,10 @@
-def solution(nlist):
-    answer = nlist
-    lenght = len(nlist)
-    if answer[lenght - 1] > answer[lenght - 2] :
-        answer.append(answer[lenght - 1] - answer[lenght - 2])
-    else :
-        answer.append(answer[lenght - 1]*2)
-    return answer
+def solution(n, control):
+    for i in range(len(control)) :
+        if control[i] == 'w' :
+            n += 1
+        elif control[i] == 's' :
+            n -= 1
+        elif control[i] == 'd' : 
+            n += 10
+        else : n -= 10
+    return n
