@@ -1,10 +1,9 @@
-def solution(lists):
-    mul = 1
-    sum = 0
-    for i in range(len(lists)) :
-        mul *= lists[i]
-        sum += lists[i]
-    if mul <= (sum**2) :
-        return 1
-    else : 
-        return 0
+def solution(nlist):
+    even = ''
+    odd = ''
+    for i in range(len(nlist)) :
+        if nlist[i] % 2 == 0 :
+            even = str(even) + str(nlist[i])
+        else :
+            odd = str(odd) + str(nlist[i])
+    return int(even) + int(odd)
