@@ -1,11 +1,21 @@
-a = []; sum = 1; arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+a = input()
+arr = []
+jum_arr = []
+jum = 0
+state = 0
 
-for i in range(3) :
-    a.append(input())
-    a[i] = int(a[i])
-    sum *= a[i]
-for i in range(len(str(sum))):
-    arr[int(str(sum)[i])] += 1
+for i in range(int(a)):
+    arr.append(input())
 
-for i in range(len(arr)):
-    print(arr[i], end='\n')
+for i in range(int(a)) :
+    for j in range(len(arr[i])) :
+        if arr[i][j] == 'O':
+            jum += 1 + state; state += 1
+        elif arr[i][j] == 'X' :
+            state = 0
+    jum_arr.append(jum)
+    jum = 0
+    state = 0
+
+for i in range(int(a)) :
+    print(jum_arr[i])
