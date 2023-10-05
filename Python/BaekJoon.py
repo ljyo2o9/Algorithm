@@ -1,21 +1,19 @@
 a = input()
-arr = []
-jum_arr = []
-jum = 0
-state = 0
+arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+wndqhr = 0
+max_index = 0
 
-for i in range(int(a)):
-    arr.append(input())
+for i in range(len(a)):
+    if ord(a[i]) >= ord('a') :
+        arr[int(ord(a[i]) - ord('a'))] += 1
+    elif ord(a[i]) >= ord("A") :
+        arr[int(ord(a[i]) - ord("A"))] += 1
+    
 
-for i in range(int(a)) :
-    for j in range(len(arr[i])) :
-        if arr[i][j] == 'O':
-            jum += 1 + state; state += 1
-        elif arr[i][j] == 'X' :
-            state = 0
-    jum_arr.append(jum)
-    jum = 0
-    state = 0
+for i in range(len(arr)) :
+    if(arr[i] == max(arr)) :
+        wndqhr += 1
+        max_index = i
 
-for i in range(int(a)) :
-    print(jum_arr[i])
+if wndqhr >= 2 : print("?")
+else : print(chr(max_index + ord('A')))
