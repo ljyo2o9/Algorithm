@@ -1,13 +1,14 @@
-s = input()
-arr = []
+a = input()
+a = int(a)
 
-for i in range(0, 26):
-    arr.append(-1)
+b = list(map(int, input().split()))
+b_max = max(b)
 
-for i in range(len(s)):
-    if arr[int(ord(s[i]) - ord('a'))] != -1 : continue
-    arr[int(ord(s[i]) - ord('a'))] = i
+sum = 0
 
-for i in range(0, 26):
-    print(arr[i], end=' ')
-print('')
+for i in range(a) :
+    b[i] = b[i] / b_max * 100
+    sum += b[i]
+
+print(sum / a)
+
