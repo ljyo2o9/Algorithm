@@ -1,14 +1,6 @@
-a = input()
-a = int(a)
-
-b = list(map(int, input().split()))
-b_max = max(b)
-
-sum = 0
-
-for i in range(a) :
-    b[i] = b[i] / b_max * 100
-    sum += b[i]
-
-print(sum / a)
-
+A,B,V = map(int, input().split())
+    
+if (V-B) % (A-B) == 0 :
+    print((V-B)//(A-B))
+else:
+    print((V-B)//(A-B)+1)
