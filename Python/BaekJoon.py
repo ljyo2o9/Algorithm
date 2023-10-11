@@ -1,14 +1,12 @@
-A,B = map(int, input().split())
+import sys
 
-de = 1
-i = 1
+n = int(sys.stdin.readline())
+num_list = [0] * 10001
 
-while i <= min(A,B):
-    if A % i == 0 and B % i == 0 :
-        A /= i
-        B /= i
-        de *= i
-        i = 1
-    i += 1
+for _ in range(n):
+    num_list[int(sys.stdin.readline())] += 1
 
-print("%d\n%d" %(de, de * A * B))
+for i in range(10001):
+    if num_list[i] != 0:
+        for j in range(num_list[i]):
+            print(i)
