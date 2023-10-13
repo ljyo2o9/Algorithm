@@ -1,9 +1,8 @@
 import sys
 
 n = int(sys.stdin.readline())
-i = 1
+a = int(sys.stdin.readline())
 
-while(i != n) :
-    i += 1
-    if n % i != 0 : continue
-    print(i); n /= i; i = 1
+print(n + a)
+print(n - a)
+print(n * a)
