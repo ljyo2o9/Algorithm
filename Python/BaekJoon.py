@@ -1,26 +1,179 @@
-import sys
-from itertools import combinations
 
-numbers = []
-sum = 0
+x, y = map(int, input().split())
 
-def print_arr(combo) :
-    for i in range(len(combo)) :
-        print(combo[i])
+# 둠스 데이
+# 1 - 3
+# 2 - 7
+# 3 - 7
+# 4 - 4
+# 5 - 9
+# 6 - 6
+# 7 - 11
+# 8 - 8
+# 9 - 5
+# 10 - 10
+# 11 - 7
+# 12 - 12
 
-for i in range(9) : numbers.append(int(sys.stdin.readline()))
+#날짜 구하는 공식
+year = 7
+n = ((year // 12) + (year % 12) + ((year % 12)//4) + 2) % 7
+m = 0
+d = n
 
-# 7개의 숫자 조합 생성
-combinations_list = list(combinations(numbers, 7))
-# 중복 배열 제거
-unique_combinations = set(tuple(sorted(combo)) for combo in combinations_list)
+def day(d) :
+    if d == 0 :
+        print('SUN')
+    elif d == 1 :
+        print('MON')
+    elif d == 2 :
+        print('TUE')
+    elif d == 3 :
+        print('WED')
+    elif d == 4 :
+        print('THU')
+    elif d == 5 :
+        print('FRI')
+    elif d == 6 :
+        print('SAT')
 
-# 중복을 제외한 조합 출력
-for combo in unique_combinations:
-    for i in range(len(combo)) :
-        sum += combo[i]
-    if sum == 100 : 
-        print_arr(sorted(combo))
-        break
-    sum = 0
-
+if x == 1 :
+    m = 3
+    if m - d <= y :
+        while m + d < y :
+            m += 7
+        if m > y :
+            while m != y :
+                m -= 1
+                d -= 1
+        else :
+            while m != y :
+                m += 1
+                d += 1
+    else :
+        m -= d + 1
+        d = 6
+        while m != y :
+            m -= 1
+            d -= 1
+    day(d)
+elif x == 2 or x == 3:
+    m = 7
+    if m - d <= y :
+        while m + d < y :
+            m += 7
+        if m > y :
+            while m != y :
+                m -= 1
+                d -= 1
+        else :
+            while m != y :
+                m += 1
+                d += 1
+    else :
+        m -= d + 1
+        d = 6
+        while m != y :
+            m -= 1
+            d -= 1
+    day(d)
+elif x % 2 == 0 :
+    m = x
+    if m - d <= y :
+        while m + d < y :
+            m += 7
+        if m > y :
+            while m != y :
+                m -= 1
+                d -= 1
+        else :
+            while m != y :
+                m += 1
+                d += 1
+    else :
+        m -= d + 1
+        d = 6
+        while m != y :
+            m -= 1
+            d -= 1
+    day(d)
+elif x == 5 :
+    m = 9
+    if m - d <= y :
+        while m + d < y :
+            m += 7
+        if m > y :
+            while m != y :
+                m -= 1
+                d -= 1
+        else :
+            while m != y :
+                m += 1
+                d += 1
+    else :
+        m -= d + 1
+        d = 6
+        while m != y :
+            m -= 1
+            d -= 1
+    day(d)
+elif x == 7 :
+    m = 11
+    if m - d <= y :
+        while m + d < y :
+            m += 7
+        if m > y :
+            while m != y :
+                m -= 1
+                d -= 1
+        else :
+            while m != y :
+                m += 1
+                d += 1
+    else :
+        m -= d + 1
+        d = 6
+        while m != y :
+            m -= 1
+            d -= 1
+    day(d)
+elif x == 9 :
+    m = 5
+    if m - d <= y :
+        while m + d < y :
+            m += 7
+        if m > y :
+            while m != y :
+                m -= 1
+                d -= 1
+        else :
+            while m != y :
+                m += 1
+                d += 1
+    else :
+        m -= d + 1
+        d = 6
+        while m != y :
+            m -= 1
+            d -= 1
+    day(d)
+elif x == 11 :
+    m = 7
+    if m - d <= y :
+        while m + d < y :
+            m += 7
+        if m > y :
+            while m != y :
+                m -= 1
+                d -= 1
+        else :
+            while m != y :
+                m += 1
+                d += 1
+    else :
+        m -= d + 1
+        d = 6
+        while m != y :
+            m -= 1
+            d -= 1
+    day(d)
