@@ -1,12 +1,30 @@
 import sys
-#0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597
+
 n = int(sys.stdin.readline())
-arr = [0, 1]
-sum = 0
-m = 0
+arr = []
+de = 1
+arr_so = []
 
-for i in range(n - 1) :
-    m += arr[i - 1] + arr[i - 2]
-    arr.append(m)
+def soinsu(a, b) :
+    t = 2
+    while True :
+        if t > a or t > b : break
+        if(a % t == 0 and b % t == 0) :
+            arr.append(t)
+            a //= t; b //= t
+            t = 2
+            continue
+        t += 1
+    arr.append(a); arr.append(b)
 
-print(arr[len(arr) - 1])
+for i in range(n) :
+    a, b = map(int, sys.stdin.readline().split())
+    soinsu(a, b)
+    for i in range(len(arr)) :
+        de *= arr[i]
+    arr_so.append(de)
+    de = 1
+    arr.clear()
+
+for i in range(len(arr_so)) :
+    print(int(arr_so[i]))
