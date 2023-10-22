@@ -1,6 +1,12 @@
-words = [input() for i in range(5)]
+import sys
 
-for j in range(15):
-    for i in range(5):
-        if j < len(words[i]):
-            print(words[i][j], end='')
+t = int(sys.stdin.readline())
+arr = []
+
+for i in range(t) :
+    cnt = 0
+    n,m = map(str, sys.stdin.readline().split())
+    for i in range(int(n), int(m) + 1) :
+        w = str(i)
+        cnt += w.count('0')
+    print(cnt)
