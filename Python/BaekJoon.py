@@ -1,10 +1,16 @@
 import sys
 
-arr = []
+while True :
+    n = sys.stdin.readline()
+    if int(n) == 0 : break
+    cnt = 0
 
-arr = list(map(int, sys.stdin.readline().split()))
+    for i in n :
+        if i == '\n' : continue
+        cnt += 1
+        
+        if i == '1' : cnt += 2
+        elif i == '0' : cnt += 4
+        else : cnt += 3
 
-arr.sort()
-
-for i in arr :
-    print(i, end=' ')
+    print(cnt + 1)
