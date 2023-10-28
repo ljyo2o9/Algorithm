@@ -1,5 +1,12 @@
-import sys
+num = int(input())
+word = list(input())
 
-n,m = map(int, sys.stdin.readline().split())
+for _ in range(num-1):
+    word_2 = input()
+    for n in range(len(word)):
+        if word[n] == word_2[n]:
+            continue
+        else:
+            word[n] = "?"
 
-print((n - 1) + (n * (m - 1)))
+print(*word, sep = "")
