@@ -1,12 +1,13 @@
-num = int(input())
-word = list(input())
+import sys
 
-for _ in range(num-1):
-    word_2 = input()
-    for n in range(len(word)):
-        if word[n] == word_2[n]:
-            continue
-        else:
-            word[n] = "?"
+n = int(sys.stdin.readline())
+temp = []
 
-print(*word, sep = "")
+for i in range(n) :
+    arr = list(map(str, sys.stdin.readline().split()))
+    for j in range(len(arr)) :
+        temp = arr[j][::-1]
+        arr[j] = temp
+    for j in range(len(arr)) :
+        print(arr[j], end=" ")
+    print()
