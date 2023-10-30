@@ -1,13 +1,8 @@
-import sys
+a, b = input().split()
 
-n = int(sys.stdin.readline())
-temp = []
+a = a[::-1]
+b = b[::-1]
 
-for i in range(n) :
-    arr = list(map(str, sys.stdin.readline().split()))
-    for j in range(len(arr)) :
-        temp = arr[j][::-1]
-        arr[j] = temp
-    for j in range(len(arr)) :
-        print(arr[j], end=" ")
-    print()
+c = str(int(a) + int(b))
+
+print(int(c[::-1]))
