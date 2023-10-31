@@ -1,8 +1,20 @@
-a, b = input().split()
+import sys
 
-a = a[::-1]
-b = b[::-1]
+cnt = 0
+arr = []
 
-c = str(int(a) + int(b))
+while True :
+    n = int(sys.stdin.readline())
+    if n == -1 : break
 
-print(int(c[::-1]))
+    for i in range(1, n):
+        if n % i == 0 :
+            cnt += i
+            arr.append(str(i))
+
+    c = ' + '.join(arr)
+    if cnt == n : print(n, "=", c)
+    else : print(n, "is NOT perfect.")
+
+    arr.clear()
+    cnt = 0
