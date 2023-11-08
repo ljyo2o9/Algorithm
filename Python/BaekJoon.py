@@ -1,13 +1,13 @@
-N = int(input())
-cnt = N
+rating = ['A+', 'A0', 'B+', 'B0', 'C+', 'C0', 'D+', 'D0', 'F']
+grade = [4.5, 4.0, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0]
 
-for i in range(N):
-    word = input()
-    for j in range(0, len(word)-1):
-        if word[j] == word[j+1]:
-            pass
-        elif word[j] in word[j+1:]:
-            cnt -= 1
-            break
+total = 0
+result = 0
+for _ in range(20) :
+    s, p, g = input().split()
+    p = float(p)
+    if g != 'P' :
+        total += p
+        result += p * grade[rating.index(g)]
 
-print(cnt)
+print(result / total)
