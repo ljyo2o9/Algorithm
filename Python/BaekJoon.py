@@ -1,13 +1,16 @@
-rating = ['A+', 'A0', 'B+', 'B0', 'C+', 'C0', 'D+', 'D0', 'F']
-grade = [4.5, 4.0, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0]
+import sys
 
-total = 0
-result = 0
-for _ in range(20) :
-    s, p, g = input().split()
-    p = float(p)
-    if g != 'P' :
-        total += p
-        result += p * grade[rating.index(g)]
+one_max = 0; link_x = 0; link_y = 0
+arr = [[0 for _ in range(9)] for _ in range(9)]
 
-print(result / total)
+arr_index = []
+
+for i in range(9) :
+  arr[i] = list(map(int, sys.stdin.readline().split()))
+
+  if one_max < max(arr[i]) :
+    one_max = max(arr[i])
+    link_x = i
+    link_y = arr[i].index(max(arr[i]))
+
+print(one_max, link_x + 1, link_y + 1)
