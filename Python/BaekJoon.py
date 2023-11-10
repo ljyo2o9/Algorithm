@@ -1,16 +1,20 @@
 import sys
 
-one_max = 0; link_x = 0; link_y = 0
-arr = [[0 for _ in range(9)] for _ in range(9)]
+arr = [[0 for _ in range(100)] for _ in range(100)]
 
-arr_index = []
+n = int(input()); cnt = 0
 
-for i in range(9) :
-  arr[i] = list(map(int, sys.stdin.readline().split()))
+for q in range(n) :
+  y, x = map(int, input().split())
 
-  if one_max < max(arr[i]) :
-    one_max = max(arr[i])
-    link_x = i
-    link_y = arr[i].index(max(arr[i]))
+  x -= 1; y -= 1
 
-print(one_max, link_x + 1, link_y + 1)
+  for i in range(x, x + 10) :
+    for j in range(y, y + 10) :
+      arr[i][j] = 1
+
+for i in range(100):
+  for j in range(100) :
+    if(arr[i][j] == 1) : cnt += 1
+
+print(cnt)
