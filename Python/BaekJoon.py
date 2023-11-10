@@ -1,20 +1,32 @@
-import sys
+x, y = map(int, input().split())
+arr = [[0 for _ in range(x)] for _ in range(y)]
 
-arr = [[0 for _ in range(100)] for _ in range(100)]
+for i in range(y) :
+  arr[i] = list(map(int, input().split()))
 
-n = int(input()); cnt = 0
+for i in range(y) :
+  arr2 = list(map(int, input().split()))
 
-for q in range(n) :
-  y, x = map(int, input().split())
+  arr[i] += arr2
 
-  x -= 1; y -= 1
+for i in range(y) :
+  for j in range(x) :
+    print(arr[i][j] + arr[i][j + x], end=' ')
+  print()
 
-  for i in range(x, x + 10) :
-    for j in range(y, y + 10) :
-      arr[i][j] = 1
+#   A, B = [], []
 
-for i in range(100):
-  for j in range(100) :
-    if(arr[i][j] == 1) : cnt += 1
+# N, M = map(int, input().split())
 
-print(cnt)
+# for row in range(N):
+#     row = list(map(int, input().split()))
+#     A.append(row)
+
+# for row in range(N):
+#     row = list(map(int, input().split()))
+#     B.append(row)
+    
+# for row in range(N):
+#     for col in range(M):
+#         print(A[row][col] + B[row][col], end=' ')
+#     print()
