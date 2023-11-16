@@ -1,19 +1,18 @@
-#include <stdio.h>
-
-// 킹 1개, 퀸 1개, 룩 2개, 비숍 2개, 나이트 2개, 폰 8
-int arr[] = {1, 1, 2, 2, 2, 8};
-int arr2[8];
+#include <iostream>
+using namespace std;
 
 int main() {
-  int n;
+	int N;
+	cin >> N;
 
-  for(int i=0; i<6; i++){
-    scanf("%d", &n);
+	int i = 1;
+	while (N > i) {
+		N -= i;
+		i++;
+	}
 
-    arr2[i] = arr[i] - n;
-  }
-
-  for(int i=0; i<6; i++){
-    printf("%d ", arr2[i]);
-  }
+	if (i % 2 == 1)
+		cout << i + 1 - N << '/' << N << endl;
+	else
+		cout << N << '/' << i + 1 - N << endl;
 }
