@@ -1,11 +1,17 @@
-#소수 찾기
-
 n = int(input())
+m = list(map(int, input().split()))
+cnt = 0
 
-sosu = []
-arr = [a for a in range(2, n + 1)]
+def sosu(m) :
+  if m == 1 : return 0
+  for i in range(2, m) :
+    if m % i == 0 : return 0
+  return 1
 
-while arr[0] ** 2 <= n :
-  sosu.append(arr[0])
-  arr = [a for a in arr if a % arr[0]]
-print(sosu + arr)
+for i in range(n) :
+  p = m[i]
+
+  t = sosu(p)
+  if t == 1 : cnt += 1
+
+print(cnt)
