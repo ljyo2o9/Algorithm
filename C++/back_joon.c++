@@ -3,18 +3,27 @@
 
 using namespace std;
 
+int arr[101];
+
 int main(){
-	int a, b, c;
-	int _max, _another, _sum;
-	cin >> a >> b >> c;
+	int n, m, sum = 0;
+	int rear = 0 , front = 0;
+	cin >> n >> m;
 
-	_max = max(max(a, b), c); _sum = a+b+c; _another = _sum - _max;
-
-	while(_max >= _another){
-		_another++; _sum--;
+	for(int i=0; i<n; i++){
+		cin >> arr[i];
 	}
+	
+	sort(arr, arr+n);
 
-	cout << _sum << endl;
+	for(int i=0; i<n; i++){
+		if(arr[i] <= m){
+			sum += arr[i];
+			if(sum > m) sum -= arr[i];
+			cout << sum << ' ';
+		}
+	}
+	cout << sum << endl;
 
 	return 0;
 }
