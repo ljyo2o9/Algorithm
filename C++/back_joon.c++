@@ -23,7 +23,7 @@ int main(){
 			cout << sum << ' ';
 		}
 	}
-	cout << sum << endl;
+	cout << sum << ' ' << endl;
 
 	return 0;
 }
