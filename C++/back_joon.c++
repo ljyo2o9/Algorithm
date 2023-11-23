@@ -1,24 +1,24 @@
 #include <iostream>
+#include <algorithm>
+
 using namespace std;
 
-int main() {
-    int n, m,goal,sum = 0;
-    int min = 9999999;
-    int arr[100] = {0, };
+int main()
+{
+    int a, b, c, d, e, f;
 
-    cin >> n >> m;
-    for(int i = 0; i < n; i++)
-        cin >> arr[i];
+    cin >> a >> b >> c >> d >> e >> f;
 
-    for(int i = 0; i < n-2; i++)
-        for(int j = i+1; j < n-1; j++)
-            for(int k = j+1; k < n; k++)
-            {
-                sum = arr[i]+arr[j]+arr[k];
-                if(m - sum < min && m - sum >= 0) {
-                    min = m - sum;
-                    goal = sum;
-                }
+    for (int i = -999; i < 1000; i++){
+        for (int j = i; j < 1000; j++){
+            if ((a * i) + (b * j) == c && (d * i) + (e * j) == f){
+                cout << i << ' ' << j << endl;
+                return 0;
             }
-    cout << goal << endl;
+            else if ((a * j) + (b * i) == c && (d * j) + (e * i) == f){
+                cout << j << ' ' << i << endl;
+                return 0;
+            }
+        }
+    }
 }
