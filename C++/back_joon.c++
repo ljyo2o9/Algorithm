@@ -3,15 +3,19 @@
 
 using namespace std;
 
-int arr[6], sum=0, n;
+int arr[1001];
 
 int main(){
-	for(int i=0; i<5; i++){
+	int n, m;
+	cin >> n >> m;
+
+	for(int i=0; i<n; i++){
 		cin >> arr[i];
-		sum += arr[i];
 	}
+	sort(arr, arr+n);
+	reverse(arr, arr+n);
 
-	sort(arr, arr+5);
+	cout << arr[m-1];
 
-	cout << sum/5 << '\n' << arr[2] << endl;
+	return 0;
 }
