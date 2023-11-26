@@ -3,22 +3,15 @@
 
 using namespace std;
 
-int main()
-{
-    int a, b, c, d, e, f;
+int arr[6], sum=0, n;
 
-    cin >> a >> b >> c >> d >> e >> f;
+int main(){
+	for(int i=0; i<5; i++){
+		cin >> arr[i];
+		sum += arr[i];
+	}
 
-    for (int i = -999; i < 1000; i++){
-        for (int j = i; j < 1000; j++){
-            if ((a * i) + (b * j) == c && (d * i) + (e * j) == f){
-                cout << i << ' ' << j << endl;
-                return 0;
-            }
-            else if ((a * j) + (b * i) == c && (d * j) + (e * i) == f){
-                cout << j << ' ' << i << endl;
-                return 0;
-            }
-        }
-    }
+	sort(arr, arr+5);
+
+	cout << sum/5 << '\n' << arr[2] << endl;
 }
