@@ -3,35 +3,29 @@ using namespace std;
 
 int main() {
 	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-	map<string, int> ma;
-	vector<string> answer;
+	cin.tie(0);
+	cout.tie(0);
 
-	int n, m, cnt = 0;
-	string tmp;
+	string tmp, tmp2;
+	int n, m;	
+	map<string, int> pok;
+	map<int, string> kop;
 
 	cin >> n >> m;
 
-	for(int i=0; i<n; i++){
+	for(int i=1; i<=n; i++){
 		cin >> tmp;
-		ma[tmp]++;
+		pok[tmp] = i;
+		kop[i] = tmp;
 	}
+
 	for(int i=0; i<m; i++){
-		cin >> tmp;
-		ma[tmp]++;
-	}
-	for(auto i = ma.begin(); i!=ma.end(); i++) {
-		if(i->second > 1){
-			answer.push_back( i->first);
+		cin >> tmp2;
+		if(tmp2[0] >= 'A' && tmp2[0] <= 'Z'){
+			cout << pok.at(tmp2) << '\n';
+		} else {
+			cout << kop.at(stoi(tmp2)) << '\n';
 		}
-	}
-
-	sort(answer.begin(), answer.end());
-
-	cout << answer.size() << endl;
-	for(string i : answer) {
-		cout << i << "\n";
 	}
 
 	return 0;
