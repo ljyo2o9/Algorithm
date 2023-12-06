@@ -1,36 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define pp pair<string, string>
-#define mm map<string, string>
-
-bool cmp(pp a, pp b){
-	return a.first > b.first;
-}
+#define mm map<int, int>
 
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	cout.tie(0);
 
-	int n;
-	string name, state;
+	int n, m, tmp;
 	mm ma;
 
 	cin >> n;
 	for(int i=0; i<n; i++){
-		cin >> name >> state;
-		ma[name] = state;
+		cin >> tmp;
+		ma[tmp]++;
 	}
 
-	vector<pp> vec(ma.begin(), ma.end());
-	stable_sort(vec.begin(), vec.end(), cmp);
-
-	for(auto d : vec){
-		if(d.second == "enter"){
-			cout << d.first << '\n';
+	cin >> m;
+	for(int i=0; i<m; i++){
+		cin >> tmp;
+		if(ma.find(tmp) != ma.end()){
+			cout << ma[tmp] << ' ';
+		} else {
+			cout << 0 << ' ';
 		}
 	}
-
+	cout << '\n';
+	
 	return 0;
 }
