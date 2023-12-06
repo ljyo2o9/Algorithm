@@ -3,8 +3,8 @@
 using namespace std;
 
 bool cmp(const pp& a, const pp& b){
-	if(a.first == b.first) return a.second < b.second;
-	return a.first < b.first;
+	if(a.second == b.second) return a.first < b.first;
+	return a.second < b.second;
 }
 
 int main(){
@@ -22,7 +22,7 @@ int main(){
 	}
 
 	sort(vec.begin(), vec.end(), cmp);
-	
+
 	for(auto d : vec){
 		cout << d.first << ' ' << d.second << '\n';
 	}
