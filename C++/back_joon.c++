@@ -1,31 +1,30 @@
 #include <bits/stdc++.h>
-#define pp pair<int, int>
-using namespace std;
 
-bool cmp(const pp& a, const pp& b){
-	if(a.second == b.second) return a.first < b.first;
-	return a.second < b.second;
-}
+using namespace std;
 
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	cout.tie(0);
 
-	int n, x, y;
-	cin >> n;
-	vector<pp> vec;
+	int n, m, cnt=0;
+	string name;
+	map<string, int> mm;
+	cin >> n >> m;
 
 	for(int i=0; i<n; i++){
-		cin >> x >> y;
-		vec.push_back(make_pair(x, y));
+		cin >> name;
+		mm[name]++;
 	}
 
-	sort(vec.begin(), vec.end(), cmp);
-
-	for(auto d : vec){
-		cout << d.first << ' ' << d.second << '\n';
+	for(int i=0; i<m; i++){
+		std:: cin >> name;
+		if(mm.find(name) != mm.end()){
+			cnt++;
+		}
 	}
 
+	cout << cnt << '\n';
+	
 	return 0;
 }
