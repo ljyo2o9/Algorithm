@@ -1,28 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+typedef long long int ll;
+typedef pair<ll, ll> pp;
+
+bool cmp(pp& a, pp&b){\
+	if(a.second == b.second) return a.first < b.first;
+	return a.second > b.second;
+}
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 
-	long long int n, m, tmp;
-	map<int, int> su;
+	ll n, tmp;
+	map<ll, ll> ma;
 
 	cin >> n;
+
 	for(int i=0; i<n; i++){
-		cin >> m;
-		for(int j=0; j<m; j++){
-			cin >> tmp;
-			su[tmp]++;
-		}
-		cin >> m;
-		for(int j=0; j<m; j++){
-			cin >> tmp;
-			if(su.find(tmp) != su.end()) cout << 1 << '\n';
-			else cout << 0 << '\n';
-		}
-		su.clear();
+		cin >> tmp;
+		ma[tmp]++;
 	}
+
+	vector<pp> v(ma.begin(), ma.end());
+	sort(v.begin(), v.end(), cmp);
+
+	cout << v.at(0).first << '\n';
 
 	return 0;
 }
