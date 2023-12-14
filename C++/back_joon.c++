@@ -1,29 +1,66 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool cmp(int& a, int& b){
-	return a < b;
-}
+struct cmp{
+	bool operator()(int& a, int& b){
+		bool a_bool = false, b_bool = false;
+		if(a < 0){
+			a *= -1;
+			a_bool = true;
+		}
+		if(b < 0){
+			b *= -1;
+			b_bool = true;
+		}
 
-int main(){
+		if(a == b){
+			a = a_bool ? a * -1 : a;
+			b = b_bool ? b * -1 : b;
+
+			return a > b;
+		} else {
+			if(a < b){
+				a = a_bool ? a * -1 : a;
+				b = b_bool ? b * -1 : b;
+
+				return false;
+			} else {
+				a = a_bool ? a * -1 : a;
+				b = b_bool ? b * -1 : b;
+
+				return true;
+			}
+		}
+	}
+};
+
+int main()
+{
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 
-	int tmp, sum = 0;
+	int n, tmp;
+	priority_queue<int, vector<int>, cmp> qu;
 	vector<int> v;
+	cin >> n;
 
-	for(int i=0; i<7; i++){
+	for(int i=0; i<n; i++){
 		cin >> tmp;
-		if(tmp % 2 != 0) v.push_back(tmp);
-	}
-	
-	sort(v.begin(), v.end(), cmp);
-	for(auto d : v){
-		sum += d;
+		if(tmp == 0){
+			if(qu.empty()) v.push_back(0);
+			else {
+				v.push_back(qu.top());
+				qu.pop();
+			}
+		}
+		else {
+			qu.push(tmp);
+		}
 	}
 
-	if(sum == 0) cout << -1 << '\n';
-	else cout << sum << '\n' << v.at(0) << '\n';
+	for(auto d : v){
+		cout << d << '\n';
+	}
 
 	return 0;
 }
