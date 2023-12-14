@@ -1,66 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct cmp{
-	bool operator()(int& a, int& b){
-		bool a_bool = false, b_bool = false;
-		if(a < 0){
-			a *= -1;
-			a_bool = true;
-		}
-		if(b < 0){
-			b *= -1;
-			b_bool = true;
-		}
-
-		if(a == b){
-			a = a_bool ? a * -1 : a;
-			b = b_bool ? b * -1 : b;
-
-			return a > b;
-		} else {
-			if(a < b){
-				a = a_bool ? a * -1 : a;
-				b = b_bool ? b * -1 : b;
-
-				return false;
-			} else {
-				a = a_bool ? a * -1 : a;
-				b = b_bool ? b * -1 : b;
-
-				return true;
-			}
-		}
+long long gcd(long long a, long long b){
+	long long mod = a % b;
+	while(mod > 0){
+		a = b;
+		b = mod;
+		mod = a % b;
 	}
-};
+	return b;
+}
 
-int main()
-{
+int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 
-	int n, tmp;
-	priority_queue<int, vector<int>, cmp> qu;
-	vector<int> v;
-	cin >> n;
+	long long n, m, mg;
+	cin >> n >> m;
 
-	for(int i=0; i<n; i++){
-		cin >> tmp;
-		if(tmp == 0){
-			if(qu.empty()) v.push_back(0);
-			else {
-				v.push_back(qu.top());
-				qu.pop();
-			}
-		}
-		else {
-			qu.push(tmp);
-		}
+	mg = gcd(n, m);
+	for(int i=0; i<mg; i++){
+		cout << '1';
 	}
-
-	for(auto d : v){
-		cout << d << '\n';
-	}
+	cout << '\n';
 
 	return 0;
 }
