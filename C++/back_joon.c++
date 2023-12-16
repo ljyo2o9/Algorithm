@@ -1,28 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-long long gcd(long long a, long long b){
-	long long mod = a % b;
-	while(mod > 0){
-		a = b;
-		b = mod;
-		mod = a % b;
-	}
-	return b;
+bool cmp(int& a, int& b){
+	return a < b;
 }
 
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 
-	long long n, m, mg;
+	int n, m, tmp;
 	cin >> n >> m;
 
-	mg = gcd(n, m);
-	for(int i=0; i<mg; i++){
-		cout << '1';
+	vector<int> v(n);
+
+	for(int i=0; i<n; i++){
+		cin >> tmp;
+		v[i] = tmp;
 	}
-	cout << '\n';
+
+	sort(v.begin(), v.end(), cmp);
+	cout << v[m - 1] << '\n';
 
 	return 0;
 }
