@@ -1,26 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool cmp(int& a, int& b){
-	return a < b;
+#define pp pair<int, int>
+
+bool cmp(pp& a, pp& b){
+	return a.first < b.first;
 }
 
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 
-	int n, m, tmp;
-	cin >> n >> m;
+	int n, tmp;
+	cin >> n;
 
-	vector<int> v(n);
-
+	map<int, int> ma;
 	for(int i=0; i<n; i++){
 		cin >> tmp;
-		v[i] = tmp;
+		ma[tmp]++;
 	}
-
+	vector<pp> v(ma.begin(), ma.end());
 	sort(v.begin(), v.end(), cmp);
-	cout << v[m - 1] << '\n';
+
+	for(auto d : v){
+		cout << d.first << ' ';
+	}
 
 	return 0;
 }
