@@ -1,7 +1,1 @@
-a, b, c, d = map(str, input().split())
-
-tmp1 = a + b
-tmp2 = c + d
-tmp3 = int(tmp1) + int(tmp2)
-
-print(tmp3)
+print('no') if len(input()) - len(input()) < 0 else print('go')
