@@ -1,26 +1,26 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-int main()
-{
-	int n, m, sum = 0, cnt = 1;
-	vector<int> vec(1001);
-
-	for(int i=1; i<=1000; i++){
-		for(int j=1; j<=i; j++){
-			vec[cnt] = i;
-			cnt++;
-			if(cnt == 1001) break;
-		}
-		if(cnt == 1001) break;
-	}
+int main(){
+	int n, m, tmp, cnt = 0;
+	map<int, int> ma;
 
 	cin >> n >> m;
 
-	for(int i=n; i<=m; i++){
-		sum += vec[i];
+	for(int i=0; i<n; i++){
+		cin >> tmp;
+		ma[tmp]++;
 	}
 
-	cout << sum << '\n';
+	for(int i=0; i<m; i++){
+		cin >> tmp;
+		ma[tmp]++;
+	}
+
+	for(auto d : ma){
+		if(d.second == 1) cnt++;
+	}
+
+	cout << cnt << '\n';
 	return 0;
 }
