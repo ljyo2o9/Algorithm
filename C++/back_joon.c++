@@ -1,9 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-queue<int> qu;
 vector<int> vec[100001];
 int vst[100001], order[100001], cnt = 0;
+
+void dfs(int s){
+    for(int i=0; i<vec[s].size(); i++){
+        int tmp = vec[s][i]; // 2
+        if(vst[tmp] == 0){
+            vst[tmp] = 1;
+            order[tmp] = ++cnt;
+            dfs(tmp);
+        }
+    }
+    return;
+}
 
 int main(){
     int n, m, s;
@@ -21,27 +32,11 @@ int main(){
         sort(vec[i].begin(), vec[i].end());
     }
 
-    qu.push(s);
     vst[s] = 1;
     order[s] = ++cnt;
+    dfs(s);
 
-    while(!qu.empty()){
-        int qu_f = qu.front();
-        qu.pop();
-
-        for (int i = 0; i < vec[qu_f].size(); i++) { // 노드에 연결된 크기만큼 반복
-            int tmp = vec[qu_f][i];
-			if (!vst[tmp]) {
-                vst[tmp] = 1; // 방문처리
-				order[tmp] = ++cnt;
-				qu.push(tmp); // 큐에 넣고
-            }
-        }
+    for(int i=1; i<=n; i++){
+        cout << order[i] << '\n';
     }
-
-    for (int i = 1; i <= n; i++) {
-		printf("%d\n", order[i]);
-	}
-
-    return 0;
 }
