@@ -1,42 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> vec[100001];
-int vst[100001], order[100001], cnt = 0;
-
-void dfs(int s){
-    for(int i=0; i<vec[s].size(); i++){
-        int tmp = vec[s][i]; // 2
-        if(vst[tmp] == 0){
-            vst[tmp] = 1;
-            order[tmp] = ++cnt;
-            dfs(tmp);
-        }
-    }
-    return;
-}
+int arr[1000];
 
 int main(){
-    int n, m, s;
-    cin >> n >> m >> s;
+    int n, tmp;
 
-    int a, b;
-
-    for(int i=0; i<m; i++){
-        cin >> a >> b;
-        vec[a].push_back(b);
-        vec[b].push_back(a);
-    }
+    cin >> n;
+    arr[0] = 0;
+    arr[1] = 1;
+    arr[2] = 2;
+    arr[3] = 4;
 
     for(int i=0; i<n; i++){
-        sort(vec[i].begin(), vec[i].end());
+        cin >> tmp;
+
+        for(int j=4; j<=tmp; j++){
+            arr[j] = arr[j-3] + arr[j-2] + arr[j-1];
+        }
+
+        cout << arr[tmp] << '\n';
     }
 
-    vst[s] = 1;
-    order[s] = ++cnt;
-    dfs(s);
-
-    for(int i=1; i<=n; i++){
-        cout << order[i] << '\n';
-    }
-}
+    return 0;
+} 
