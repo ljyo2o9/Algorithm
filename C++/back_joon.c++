@@ -1,31 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int zero[10001];
-int one[10001];
-
 int main(){
-  int n, tmp;
-  cin >> n;
+    int n, m;
+    cin >> n >> m;
 
-  zero[0] = 1;
-  zero[1] = 0;
-  zero[2] = 1;
+    vector<int> vec;
+    vector<int> vec_tmp;
 
-  one[0] = 0;
-  one[1] = 1;
-  one[2] = 1;
-
-  for(int i=0; i<n; i++){
-    cin >> tmp;
-
-    for(int j=3; j<=tmp; j++){
-      zero[j] = zero[j-1] + zero[j-2];
-      one[j] = one[j-1] + one[j-2];
+    for(int i=1; i<=n; i++){
+        vec.push_back(i);
     }
 
-    cout << zero[tmp] << ' '  << one[tmp] << '\n';
-  }
+    for(int i=0; i<n; i++){
+        if(i < m){
+            vec_tmp.push_back(1);
+        } else {
+            vec_tmp.push_back(0);
+        }
+    }
 
-  return 0;
+    do
+    {
+        for(int i=0; i<n; i++){
+            if(vec_tmp[i] == 1){
+                cout << vec[i] << ' ';
+            }
+        }
+        cout << '\n';
+    } while (prev_permutation(vec_tmp.begin(), vec_tmp.end()));
+
+    return 0;
 }
