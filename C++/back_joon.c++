@@ -1,46 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int arr[101][101], n, m, cnt = 0;
-int save[101];
-
-void virus(int start){
-  for(int i=start; i<=n; i++){
-    for(int j=1; j<=n; j++){
-      if(arr[i][j] == 1){
-        if(save[j] == 0){
-          save[j] = 1;
-          cnt++;
-          virus(j);
-        }
-      }
-    }
-    return;
-  }
-}
+int zero[10001];
+int one[10001];
 
 int main(){
-  int a, b;
+  int n, tmp;
+  cin >> n;
 
-  cin >> n >> m;
-  save[1] = 1; 
+  zero[0] = 1;
+  zero[1] = 0;
+  zero[2] = 1;
 
-  // init
-  for(int i=1; i<=n; i++){
-    for(int j=1; j<=n; j++){
-      arr[i][j] = 0;
+  one[0] = 0;
+  one[1] = 1;
+  one[2] = 1;
+
+  for(int i=0; i<n; i++){
+    cin >> tmp;
+
+    for(int j=3; j<=tmp; j++){
+      zero[j] = zero[j-1] + zero[j-2];
+      one[j] = one[j-1] + one[j-2];
     }
+
+    cout << zero[tmp] << ' '  << one[tmp] << '\n';
   }
 
-  for(int i=0; i<m; i++){
-    cin >> a >> b;
-
-    arr[a][b] = 1;
-    arr[b][a] = 1;
-  }
-
-  virus(1);
-
-  cout << cnt << '\n';
   return 0;
 }
