@@ -1,34 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int arr[10001];
+
 int main(){
-    int n, m;
-    cin >> n >> m;
+  int n, m, now = 1, mi = 100000, sum = 0;
 
-    vector<int> vec;
-    vector<int> vec_tmp;
+  cin >> n >> m;
 
-    for(int i=1; i<=n; i++){
-        vec.push_back(i);
+  for(int i=1; i<=100; i++){
+    arr[i*i] = 1;
+  }
+
+  for(int i=n; i<=m; i++){
+    if(arr[i] == 1){
+      mi = min(mi, i);
+      sum += i;
     }
+  }
 
-    for(int i=0; i<n; i++){
-        if(i < m){
-            vec_tmp.push_back(1);
-        } else {
-            vec_tmp.push_back(0);
-        }
-    }
-
-    do
-    {
-        for(int i=0; i<n; i++){
-            if(vec_tmp[i] == 1){
-                cout << vec[i] << ' ';
-            }
-        }
-        cout << '\n';
-    } while (prev_permutation(vec_tmp.begin(), vec_tmp.end()));
-
+  if(sum == 0){
+    cout << -1 << '\n';
     return 0;
+  }
+
+  cout << sum << '\n' << mi << '\n';
+  return 0;
 }
