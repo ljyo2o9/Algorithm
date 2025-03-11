@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-  int n;
+  int n, maxValue = 0;
   cin >> n;
   vector<int> vec(n);
   vector<int> length(n);
@@ -20,7 +20,10 @@ int main() {
     }
   }
 
-  cout << length[n-1] << '\n';
+  for(auto d : length){
+    maxValue = maxValue > d ? maxValue : d;
+  }
 
+  cout << maxValue << '\n';
   return 0;
 }
