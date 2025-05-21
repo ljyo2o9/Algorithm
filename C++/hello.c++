@@ -1,29 +1,34 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 int main() {
-  int n, maxValue = 0;
+  int n;
   cin >> n;
-  vector<int> vec(n);
-  vector<int> length(n);
 
-  for(int i=0; i<n; i++){
-    cin >> vec[i];
-  }
+  while (n--) {
+    int x1, y1, r1, x2, y2, r2;
+    cin >> x1 >> y1 >> r1 >> x2 >> y2 >> r2;
 
-  for(int i=0; i<n; i++){
-    length[i] = 1;
-    for(int j=0; j<i; j++){
-      if(vec[i] > vec[j]) {
-        length[i] = max(length[i], length[j]+1);
-      }
+    int dx = x1 - x2;
+    int dy = y1 - y2;
+    int d_sq = dx * dx + dy * dy;
+
+    int rsum = r1 + r2;
+    int rsub = abs(r1 - r2);
+    int rsum_sq = rsum * rsum;
+    int rsub_sq = rsub * rsub;
+
+    if (d_sq == 0 && r1 == r2) {
+      cout << -1 << '\n';
+    } else if (d_sq == rsum_sq || d_sq == rsub_sq) {
+      cout << 1 << '\n';
+    } else if (rsub_sq < d_sq && d_sq < rsum_sq) {
+      cout << 2 << '\n';
+    } else {
+      cout << 0 << '\n';
     }
   }
 
-  for(auto d : length){
-    maxValue = maxValue > d ? maxValue : d;
-  }
-
-  cout << maxValue << '\n';
   return 0;
 }
