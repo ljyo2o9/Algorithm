@@ -1,34 +1,76 @@
 #include <iostream>
-#include <vector>
+#include <string>
+#include <stack>
+#include <cctype>
+
 using namespace std;
 
-int main() {
-  int n;
-  cin >> n;
+string input;
 
-  while (n--) {
-    int x1, y1, r1, x2, y2, r2;
-    cin >> x1 >> y1 >> r1 >> x2 >> y2 >> r2;
+int eval(const string& s) {
+  stack<int> nums;
+  stack<int> sics;
+  int num = 0, sic = 1, i = 0, result = 0;
 
-    int dx = x1 - x2;
-    int dy = y1 - y2;
-    int d_sq = dx * dx + dy * dy;
+  while(i < s.length()) {
+    char current = s[i];
 
-    int rsum = r1 + r2;
-    int rsub = abs(r1 - r2);
-    int rsum_sq = rsum * rsum;
-    int rsub_sq = rsub * rsub;
-
-    if (d_sq == 0 && r1 == r2) {
-      cout << -1 << '\n';
-    } else if (d_sq == rsum_sq || d_sq == rsub_sq) {
-      cout << 1 << '\n';
-    } else if (rsub_sq < d_sq && d_sq < rsum_sq) {
-      cout << 2 << '\n';
-    } else {
-      cout << 0 << '\n';
+    if(isdigit(current)) {
+      while(i < s.length() && isdigit(s[i])) {
+        num = num * 10 + (s[i]-'0');
+        i++;
+      }
+      result = result + (num * sic);
+      num = 0;
+      i--;
+    } else if (current == '+') {
+      sic = 1;
+    } else if (current == '-') {
+      sic = -1;
+    } else if (current == '(') {
+      nums.push(result);
+      sics.push(sic);
+      result = 0;
+      sic = 1;
+    } else if (current == ')'){
+      result = nums.top() + (sics.top() * result);
+      nums.pop();
+      sics.pop();
     }
+
+    i++;
   }
 
-  return 0;
+  return result;
+}
+
+void generateGalho() {
+  int tmp = 0;
+  string tmp_str = "";
+  for(int i=0; i<input.length(); i++){
+    char current = input[i];
+    
+    if(current == '-') {
+      if(tmp > 0) {
+        tmp_str += ")-(";
+      } else {
+        tmp_str += "-(";
+        tmp++;
+      }
+    } else {
+      tmp_str += current;
+    }
+  }
+  while(tmp) {
+    tmp--;
+    tmp_str += ')';
+  }
+  input = tmp_str;
+}
+
+int main() {
+    cin >> input;
+    generateGalho();
+    cout << eval(input) << '\n';
+    return 0;
 }
