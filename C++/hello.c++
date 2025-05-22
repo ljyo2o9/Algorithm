@@ -1,76 +1,33 @@
-#include <iostream>
-#include <string>
-#include <stack>
-#include <cctype>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-string input;
+int n, p, tmp_x, tmp_y;
+long long int total = 0, answer = 0;
 
-int eval(const string& s) {
-  stack<int> nums;
-  stack<int> sics;
-  int num = 0, sic = 1, i = 0, result = 0;
-
-  while(i < s.length()) {
-    char current = s[i];
-
-    if(isdigit(current)) {
-      while(i < s.length() && isdigit(s[i])) {
-        num = num * 10 + (s[i]-'0');
-        i++;
-      }
-      result = result + (num * sic);
-      num = 0;
-      i--;
-    } else if (current == '+') {
-      sic = 1;
-    } else if (current == '-') {
-      sic = -1;
-    } else if (current == '(') {
-      nums.push(result);
-      sics.push(sic);
-      result = 0;
-      sic = 1;
-    } else if (current == ')'){
-      result = nums.top() + (sics.top() * result);
-      nums.pop();
-      sics.pop();
-    }
-
-    i++;
+void area(vector<pair<int, int>>& vec) {
+  total = 0;
+  for(int i=0; i<p-1; i++) {
+    total += (1LL * vec[i].first * vec[i+1].second) - (1LL * vec[i].second * vec[i+1].first);
   }
-
-  return result;
-}
-
-void generateGalho() {
-  int tmp = 0;
-  string tmp_str = "";
-  for(int i=0; i<input.length(); i++){
-    char current = input[i];
-    
-    if(current == '-') {
-      if(tmp > 0) {
-        tmp_str += ")-(";
-      } else {
-        tmp_str += "-(";
-        tmp++;
-      }
-    } else {
-      tmp_str += current;
-    }
-  }
-  while(tmp) {
-    tmp--;
-    tmp_str += ')';
-  }
-  input = tmp_str;
+  total += (1LL * vec[p-1].first * vec[0].second) - (1LL * vec[p-1].second * vec[0].first);
+  answer += abs(total);
 }
 
 int main() {
-    cin >> input;
-    generateGalho();
-    cout << eval(input) << '\n';
-    return 0;
+  cin >> n;
+
+  for(int i=0; i<n; i++) {
+    cin >> p;
+    vector<pair<int, int>> vec(p);
+    for (int j = 0; j < p; j++) {
+      cin >> tmp_x >> tmp_y;
+      vec[j] = {tmp_x, tmp_y};
+    }
+
+    area(vec);
+  }
+
+  cout << answer / 2 << '\n';
+
+  return 0;
 }
